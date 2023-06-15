@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "= 3.32.0"
     }
 
@@ -12,17 +12,18 @@ terraform {
     # resource_group_name  = ""   # Partial configuration, provided during "terraform init"
     # storage_account_name = ""   # Partial configuration, provided during "terraform init"
     # container_name       = ""   # Partial configuration, provided during "terraform init"
-    key                  = "lz-springapps-standard"
+    key = "lz-springapps-standard"
   }
 }
 
 provider "azurerm" {
-    features {
-      resource_group {
-       prevent_deletion_if_contains_resources = false
-     }
+  use_oidc = true
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
     }
-    disable_terraform_partner_id = false
-    partner_id                   = "76581e27-e985-41a0-a44d-dacc1b995aa1"  
+  }
+  disable_terraform_partner_id = false
+  partner_id                   = "76581e27-e985-41a0-a44d-dacc1b995aa1"
 }
 
